@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
+@CrossOrigin
 @RestController
+@RequestMapping("/api")
 public class ProductController {
 
-    @Autowired
     ProductServices ser;
+
+    @Autowired    //Constructer autowired
+    public ProductController(ProductServices ser) {
+        this.ser = ser;
+    }
 
     @GetMapping("/products")
     public List<Product> getProduct(){
@@ -31,7 +36,10 @@ public class ProductController {
         System.out.println(product);
         ser.addProduct(product);
         String str=product.toString();
+        if(ser.addProduct(product).equals("added"))
         return "Succesfully added  "+str;
+        else
+            return "Failed to add Product";
     }
 
     @PutMapping("/products")

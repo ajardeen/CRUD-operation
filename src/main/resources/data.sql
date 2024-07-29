@@ -1,0 +1,1 @@
+insert into PRODUCT (PRO_PRICE ,PROID ,PRO_NAME )VALUES(100,1,'Apple'),(230,2,'Banana'),(120,3,'Mango'),(200,4,'Grapes');
