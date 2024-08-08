@@ -1,59 +1,44 @@
 package com.teluskopractices.simplewebapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Component
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
+@Table(name ="product")
 public class Product {
 
      @Id
-     private int ProID;
-     private String ProName;
-     private int ProPrice;
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Integer  id;
+     private String name;
+     @Column(name = "description")
+     private String description;
+     private String brand;
+     private BigDecimal price;
+     private String category;
+     @DateTimeFormat()
+     @Column(name = "releasedate")
+     private Date releasedate;
+     private Boolean productAvailable;
+     private Integer  stockQuantity;
+     //image
+     private String imageName;
+     private String imageType;
+     @Lob
+     @Column(name = "image_data")
+     private byte[] imageData;
 
-
-     public Product(int proID, String proName, int proPrice) {
-          ProID = proID;
-          ProName = proName;
-          ProPrice = proPrice;
-     }
-
-     public Product() {
-     }
-
-     public int getProID() {
-          return ProID;
-     }
-
-     public void setProID(int proID) {
-          ProID = proID;
-     }
-
-     public String getProName() {
-          return ProName;
-     }
-
-     public void setProName(String proName) {
-          ProName = proName;
-     }
-
-     public int getProPrice() {
-          return ProPrice;
-     }
-
-     public void setProPrice(int proPrice) {
-          ProPrice = proPrice;
-     }
-
-     @Override
-     public String toString() {
-          return "Product{" +
-                  "ProID=" + ProID +
-                  ", ProName='" + ProName + '\'' +
-                  ", ProPrice=" + ProPrice +
-                  '}';
-     }
 }
