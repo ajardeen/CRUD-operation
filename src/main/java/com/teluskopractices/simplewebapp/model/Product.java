@@ -1,8 +1,8 @@
 package com.teluskopractices.simplewebapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class Product {
      private String brand;
      private BigDecimal price;
      private String category;
-     @DateTimeFormat()
+     @JsonFormat(pattern = "yyyy/MM/dd")
      @Column(name = "releasedate")
      private Date releasedate;
      private Boolean productAvailable;
@@ -38,7 +38,7 @@ public class Product {
      private String imageName;
      private String imageType;
      @Lob
-     @Column(name = "image_data")
+     @Column(name = "image_data",length=100000)
      private byte[] imageData;
 
 }
